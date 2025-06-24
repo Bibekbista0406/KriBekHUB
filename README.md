@@ -1,49 +1,83 @@
-# KriBekHUB
-# KriBekHUB Website
+<div align="center">
+  <img src="assets/logo.png" alt="KriBekHUB Logo" width="200"/>
+  
+  # 🚀 KriBekHUB Website
+  
+  *Modern, responsive portal for the KriBekHUB penetration testing tool with cyberpunk aesthetics*
+  
+  ![GitHub last commit](https://img.shields.io/github/last-commit/Bibekbista0406/KriBekHUB-website?color=00ffcc&style=flat-square)
+  ![GitHub repo size](https://img.shields.io/github/repo-size/Bibekbista0406/KriBekHUB-website?color=00ffcc&style=flat-square)
+  ![GitHub license](https://img.shields.io/github/license/Bibekbista0406/KriBekHUB-website?color=00ffcc&style=flat-square)
 
-![KriBekHUB Banner](assets/banner.png)
+</div>
 
-> Modern, responsive website for the KriBekHUB penetration testing tool with sleek animations and UI
+---
 
-## Table of Contents
-- [Features](#features)
-- [Technologies Used](#technologies-used)
-- [Installation](#installation)
-- [Development](#development)
-- [Contributing](#contributing)
-- [License](#license)
+## 🌟 Features
 
-## Features
+<table>
+  <tr>
+    <td width="33%">
+      <h3>🎨 Modern UI</h3>
+      <ul>
+        <li>Sleek dark theme</li>
+        <li>Cyberpunk accents</li>
+        <li>Animated elements</li>
+      </ul>
+    </td>
+    <td width="33%">
+      <h3>⚡ Performance</h3>
+      <ul>
+        <li>Lightweight (Vanilla JS)</li>
+        <li>60FPS animations</li>
+        <li>Optimized assets</li>
+      </ul>
+    </td>
+    <td width="33%">
+      <h3>📱 Responsive</h3>
+      <ul>
+        <li>Mobile-first design</li>
+        <li>4K-ready layout</li>
+        <li>Touch optimized</li>
+      </ul>
+    </td>
+  </tr>
+</table>
 
-✨ **Modern UI/UX Design**
-- Sleek dark theme with cyberpunk accents
-- Smooth animations and transitions
-- Fully responsive layout
+---
 
-🚀 **Interactive Elements**
-- Scroll-triggered animations
-- Hover effects on cards and buttons
-- Smooth scrolling navigation
+## 🛠 Technologies
 
-📱 **Mobile-First Design**
-- Optimized for all screen sizes
-- Touch-friendly interface
-- Adaptive layout
+<div align="center">
 
-## Technologies Used
+| Category        | Technologies                          |
+|-----------------|---------------------------------------|
+| **Core**        | HTML5, CSS3, JavaScript               |
+| **Fonts**       | Google Fonts, Font Awesome            |
+| **Animations**  | CSS Keyframes, Transforms            |
+| **Design**      | CSS Variables, Flexbox, Grid         |
 
-- **HTML5** - Semantic markup
-- **CSS3** - Modern styling with variables and animations
-- **JavaScript** - Minimal interactivity
-- **Font Awesome** - Icon set
-- **Google Fonts** - Orbitron and Roboto fonts
+</div>
 
-## Installation
+---
 
-To use or develop this website locally:
+## 🖥️ Preview
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/Bibekbista0406/KriBekHUB-website.git
-   cd KriBekHUB-website
-For Test Purpose and Penetration Testing Only
+<div align="center">
+  <img src="assets/screenshot1.png" alt="Desktop Preview" width="45%"/>
+  <img src="assets/screenshot2.png" alt="Mobile Preview" width="45%"/>
+</div>
+
+---
+
+## 🚀 Quick Start
+
+```bash
+# Clone the repository
+git clone https://github.com/Bibekbista0406/KriBekHUB-website.git
+
+# Navigate to project directory
+cd KriBekHUB-website
+
+# Open in default browser (Linux/macOS)
+open index.html
