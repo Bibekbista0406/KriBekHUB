@@ -37,20 +37,29 @@ git clone https://github.com/Bibekbista0406/KriBekHUB.git
 cd KriBekHUB
 chmod +x kri.sh clean.sh
 sudo apt update && sudo apt install -y php curl wget unzip ssh
-
+```
 🖥️ Usage
-bash
+```bash
 # Start tool
 bash kri.sh
-
+```
+```bash
 # Clean traces
 bash clean.sh
+```
 📋 Supported Platforms
 Platform	Status	Requirements
 Kali Linux	✅ Fully Supported	Default installation
-Termux	✅ Works Great	pkg install php
-Ubuntu/Debian	✅ Stable	May need php-curl
+Termux	✅ Works Great
+```bash
+pkg install php
+```
+Ubuntu/Debian	✅ Stable	May need 
+```bash
+php-curl
+```
 macOS	✅ Tested	Homebrew recommended
+
 Windows WSL	⚠️ Experimental	Use Kali WSL
 🎨 Interface Preview
 ```
