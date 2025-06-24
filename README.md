@@ -53,7 +53,8 @@ Ubuntu/Debian	✅ Stable	May need php-curl
 macOS	✅ Tested	Homebrew recommended
 Windows WSL	⚠️ Experimental	Use Kali WSL
 🎨 Interface Preview
-text
+```
+```bash
 ▀█████████▄   ▄█  ▀█████████▄     ▄████████    ▄█   ▄█▄
   ███    ███ ███    ███    ███   ███    ███   ███ ▄███▀
   ███    ███ ███▌   ███    ███   ███    █▀    ███▐██▀
@@ -66,6 +67,8 @@ text
       Version 1.0                                       | ' /| |_) || ||  _ \|  _| | ' /| |_| | | | |  _ \
       Powered by KriBekHUB                              | . \|  _ < | || |_) | |___| . \|  _  | |_| | |_) | Kristina
       Purpose: Penetration Testing ||                   |_|\_\_| \_\___|____/|_____|_|\_\_| |_|\___/|____/
+```
+
 ⚖️ License
 MIT License
 Copyright (c) 2025 Bibek Bista
@@ -86,4 +89,4 @@ Developer: Bibek Bista
 
 Inspired by: TechChip
 
-<p align="center"> <a href="https://github.com/Bibekbista0406/KriBekHUB"> <img src="https://img.shields.io/badge/Explore_KriBekHUB-00ffcc?style=for-the-badge&logo=github"> </a> </p> ```
+<p align="center"> <a href="https://github.com/Bibekbista0406/KriBekHUB"> <img src="https://img.shields.io/badge/Explore_KriBekHUB-00ffcc?style=for-the-badge&logo=github"> </a> </p>
