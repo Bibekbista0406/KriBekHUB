@@ -81,3 +81,4 @@ cd KriBekHUB-website
 
 # Open in default browser (Linux/macOS)
 open index.html
+<div align="center"> <br/> <a href="https://github.com/Bibekbista0406/KriBekHUB-website"> <img src="https://img.shields.io/badge/⭐_Star_on_GitHub-00ffcc?style=for-the-badge" alt="Star on GitHub"/> </a> <br/><br/> <sub>Built with ❤︎ by <a href="https://github.com/Bibekbista0406">Kristina (BibekBista0406)</a></sub> </div>
