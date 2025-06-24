@@ -8,25 +8,23 @@
   <img src="https://img.shields.io/github/license/Bibekbista0406/KriBekHUB?style=for-the-badge&color=00ffcc&label=LICENSE">
   <img src="https://img.shields.io/badge/Version-2.0-00ffcc?style=for-the-badge&logo=git">
 </p>
-
+[⭐ Stars] [🔄 Forks] [🧪 Tested On] [🛠 Built with Bash] [📦 Version 1.0]
 ---
+ 📸 Grab cam shots from a target's front phone camera or PC webcam — just by sending a link.
 
-## 🌌 Features
+## ✨ Key Features
 
-### 🎯 Media Capture
-- Front/Rear camera access  
-- Auto-saving snapshots  
-- Multi-shot mode  
+- 🎉 **Custom Templates** to engage the target:
+  - Festival Greeting Pa- 📷 **Webcam snapshots**
+- 📍 **GPS location**
 
-### 🌐 Location Intelligence  
-- Precise GPS coordinates  
-- Google Maps integration  
-- Accuracy analysis  
-
-### 🎭 Social Engineering  
-- 5+ phishing templates  
-- Custom page builder  
-- Auto-generated links  
+All data is stored locally and automatically organized.ge
+  - Live YouTube TV Page
+  - Online Meeting Page [Beta]
+- 🌍 **GPS Location Capture** with Google Maps Integration
+- 🧼 **Cleanup Utility** to remove all logs and saved files
+- 🧠 **Smart Architecture Detection** (ARM/x86/Apple M1)
+- ⚙️ Works on Termux, Linux distros, macOS, WSL
 
 ---
 
@@ -47,7 +45,16 @@ bash kri.sh
 # Clean traces
 bash clean.sh
 ```
-📋 Supported Platforms
+## 🖥️ Supported Systems
+
+- ✅ Kali Linux
+- ✅ Termux (Android)
+- ✅ Ubuntu
+- ✅ macOS (Intel & Apple Silicon)
+- ✅ Parrot Sec OS
+- ✅ Windows (via WSL)
+
+
 Platform	Status	Requirements
 Kali Linux	✅ Fully Supported	Default installation
 Termux	✅ Works Great
