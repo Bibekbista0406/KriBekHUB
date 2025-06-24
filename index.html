@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KriBekHUB — Penetration Testing Tool</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary: #00ffcc;
+      --primary-dark: #00cc99;
+      --secondary: #ff00cc;
+      --bg-dark: #0a0a0a;
+      --bg-darker: #050505;
+      --card-bg: rgba(20, 20, 20, 0.7);
+      --text-light: #e0e0e0;
+      --text-lighter: #f8f8f8;
+      --text-muted: #888;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-light);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    /* Smooth scroll behavior */
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    /* Header with animated gradient border */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 3rem;
+      background: var(--bg-darker);
+      z-index: 1000;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+      border-bottom: 1px solid transparent;
+      background-clip: padding-box;
+      animation: borderGradient 8s infinite alternate;
+    }
+    
+    @keyframes borderGradient {
+      0% { border-image: linear-gradient(90deg, var(--primary), var(--secondary)) 1; }
+      25% { border-image: linear-gradient(180deg, var(--primary), var(--secondary)) 1; }
+      50% { border-image: linear-gradient(270deg, var(--primary), var(--secondary)) 1; }
+      75% { border-image: linear-gradient(360deg, var(--primary), var(--secondary)) 1; }
+      100% { border-image: linear-gradient(45deg, var(--primary), var(--secondary)) 1; }
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    
+    .logo-img {
+      height: 36px;
+      transition: all 0.3s ease;
+    }
+    
+    .logo-img:hover {
+      transform: rotate(15deg) scale(1.1);
+      filter: drop-shadow(0 0 10px var(--primary));
+    }
+    
+    .logo-text {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: 1px;
+    }
+    
+    nav {
+      display: flex;
+      gap: 2rem;
+    }
+    
+    nav a {
+      position: relative;
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      padding: 0.5rem 0;
+    }
+    
+    nav a:hover {
+      color: var(--primary);
+    }
+    
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+    
+    nav a:hover::after {
+      width: 100%;
+    }
+    
+    /* Hero section with animated background */
+    .hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 2rem;
+      overflow: hidden;
+      background: radial-gradient(circle at center, rgba(15, 15, 15, 0.9) 0%, var(--bg-dark) 100%);
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('assets/banner.png') center/cover no-repeat;
+      opacity: 0.15;
+      z-index: -1;
+    }
+    
+    .hero-content {
+      max-width: 800px;
+      animation: fadeInUp 1s ease-out;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .hero h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 20px rgba(0, 255, 204, 0.3);
+    }
+    
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      color: var(--text-lighter);
+    }
+    
+    .hero strong {
+      color: var(--primary);
+    }
+    
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+    
+    .badges span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(0, 255, 204, 0.1);
+      color: var(--primary);
+      padding: 0.6rem 1.2rem;
+      border-radius: 50px;
+      border: 1px solid rgba(0, 255, 204, 0.3);
+      backdrop-filter: blur(5px);
+      transition: all 0.3s ease;
+    }
+    
+    .badges span:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 255, 204, 0.2);
+    }
+    
+    /* Main content sections */
+    .section {
+      padding: 6rem 3rem;
+      position: relative;
+    }
+    
+    .section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('assets/pattern.png') repeat;
+      opacity: 0.03;
+      z-index: -1;
+    }
+    
+    .section.dark {
+      background: var(--bg-darker);
+    }
+    
+    .section h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      color: var(--primary);
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), transparent);
+    }
+    
+    /* Features list with icons */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    
+    .feature-card {
+      background: var(--card-bg);
+      border-radius: 10px;
+      padding: 2rem;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(0, 255, 204, 0.1);
+      backdrop-filter: blur(5px);
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 30px rgba(0, 255, 204, 0.1);
+      border-color: rgba(0, 255, 204, 0.3);
+    }
+    
+    .feature-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+    
+    .feature-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--text-lighter);
+    }
+    
+    /* Code blocks */
+    pre {
+      position: relative;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 1.5rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      border-left: 3px solid var(--primary);
+      margin: 2rem 0;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+    
+    pre::before {
+      content: 'Terminal';
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: var(--primary);
+      color: #000;
+      padding: 0.2rem 0.8rem;
+      font-size: 0.8rem;
+      border-bottom-right-radius: 5px;
+      font-family: 'Orbitron', sans-serif;
+    }
+    
+    code {
+      font-family: 'Roboto Mono', monospace;
+      color: var(--primary);
+    }
+    
+    /* Supported systems grid */
+    .systems-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    
+    .system-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      background: rgba(30, 30, 30, 0.5);
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+    
+    .system-item:hover {
+      background: rgba(0, 255, 204, 0.1);
+      transform: scale(1.05);
+    }
+    
+    .system-icon {
+      font-size: 1.8rem;
+      color: var(--primary);
+    }
+    
+    /* Version history timeline */
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 3rem auto 0;
+    }
+    
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 20px;
+      height: 100%;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--primary), transparent);
+    }
+    
+    .timeline-item {
+      position: relative;
+      padding-left: 3rem;
+      margin-bottom: 2rem;
+    }
+    
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 12px;
+      top: 5px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--primary);
+      border: 3px solid var(--bg-darker);
+      box-shadow: 0 0 0 3px var(--primary);
+    }
+    
+    .timeline-date {
+      font-weight: bold;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+    
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem 1.8rem;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #000;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      font-family: 'Orbitron', sans-serif;
+      letter-spacing: 1px;
+      box-shadow: 0 5px 15px rgba(0, 255, 204, 0.3);
+    }
+    
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 255, 204, 0.4);
+    }
+    
+    .btn-outline {
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+      box-shadow: none;
+    }
+    
+    .btn-outline:hover {
+      background: rgba(0, 255, 204, 0.1);
+    }
+    
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 3rem;
+      background: var(--bg-darker);
+      position: relative;
+    }
+    
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    }
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+    
+    .social-links a {
+      color: var(--text-muted);
+      font-size: 1.5rem;
+      transition: all 0.3s ease;
+    }
+    
+    .social-links a:hover {
+      color: var(--primary);
+      transform: translateY(-3px);
+    }
+    
+    footer p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    
+    /* Animations */
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+    
+    .floating {
+      animation: float 4s ease-in-out infinite;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      header {
+        padding: 1rem;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      nav {
+        gap: 1rem;
+      }
+      
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .section {
+        padding: 4rem 1.5rem;
+      }
+      
+      .section h2 {
+        font-size: 2rem;
+      }
+    }
+    
+    /* Scroll indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--primary);
+      font-size: 1.5rem;
+      animation: bounce 2s infinite;
+    }
+    
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+      40% { transform: translateY(-20px) translateX(-50%); }
+      60% { transform: translateY(-10px) translateX(-50%); }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <img src="assets/logo.png" alt="KriBekHUB Logo" class="logo-img" />
+      <span class="logo-text">KriBekHUB</span>
+    </div>
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#install">Install</a>
+      <a href="#systems">Supported Systems</a>
+      <a href="#disclaimer">Disclaimer</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="floating">KriBekHUB v2.0</h1>
+      <p>Advanced Ethical Hacking Tool for <strong>Webcam & GPS Capture</strong> via Social Engineering</p>
+      <div class="badges">
+        <span><i class="fas fa-shield-alt"></i> Tested on Kali, Termux</span>
+        <span><i class="fas fa-code"></i> Bash Script</span>
+        <span><i class="fas fa-rocket"></i> v2.0</span>
+      </div>
+      <a href="#install" class="btn"><i class="fas fa-download"></i> Get Started</a>
+    </div>
+    <div class="scroll-indicator">
+      <i class="fas fa-chevron-down"></i>
+    </div>
+  </section>
+
+  <section id="features" class="section">
+    <h2><i class="fas fa-star"></i> Key Features</h2>
+    <p>KriBekHUB offers a comprehensive suite of penetration testing capabilities</p>
+    
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-camera"></i>
+        </div>
+        <h3>Webcam Capture</h3>
+        <p>Discreetly capture webcam snapshots from target devices with social engineering techniques.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-map-marker-alt"></i>
+        </div>
+        <h3>GPS Location</h3>
+        <p>Pinpoint exact device locations via Google Maps integration with precision targeting.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-fish"></i>
+        </div>
+        <h3>Phishing Templates</h3>
+        <p>Multiple customizable templates for various social engineering scenarios.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-microchip"></i>
+        </div>
+        <h3>Architecture Detection</h3>
+        <p>Smart detection of system architecture for optimized payload delivery.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-broom"></i>
+        </div>
+        <h3>One-Click Cleanup</h3>
+        <p>Completely remove all traces with a single command when done.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-cloud"></i>
+        </div>
+        <h3>Tunnel Support</h3>
+        <p>Built-in Ngrok & Cloudflare tunnel support for easy remote access.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="install" class="section dark">
+    <h2><i class="fas fa-terminal"></i> Installation</h2>
+    <p>Get started with KriBekHUB in just a few simple steps</p>
+    
+    <pre><code>
+# Clone the repository
+git clone https://github.com/Bibekbista0406/KriBekHUB
+
+# Navigate to the directory
+cd KriBekHUB
+
+# Run the main script
+bash kri.sh
+    </code></pre>
+    
+    <h3 style="margin-top: 2rem; color: var(--primary);">Cleanup</h3>
+    <p>When you're done testing, clean up all traces with:</p>
+    <pre><code>bash clean.sh</code></pre>
+    
+    <div style="margin-top: 2rem;">
+      <a href="https://github.com/Bibekbista0406/KriBekHUB" class="btn"><i class="fab fa-github"></i> View on GitHub</a>
+      <a href="#systems" class="btn btn-outline" style="margin-left: 1rem;"><i class="fas fa-laptop-code"></i> Supported Systems</a>
+    </div>
+  </section>
+
+  <section id="systems" class="section">
+    <h2><i class="fas fa-check-circle"></i> Supported Systems</h2>
+    <p>KriBekHUB works seamlessly across multiple platforms</p>
+    
+    <div class="systems-grid">
+      <div class="system-item">
+        <div class="system-icon">
+          <i class="fab fa-linux"></i>
+        </div>
+        <div>
+          <h3>Kali Linux</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Primary development platform</p>
+        </div>
+      </div>
+      
+      <div class="system-item">
+        <div class="system-icon">
+          <i class="fas fa-mobile-alt"></i>
+        </div>
+        <div>
+          <h3>Termux</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Android penetration testing</p>
+        </div>
+      </div>
+      
+      <div class="system-item">
+        <div class="system-icon">
+          <i class="fab fa-ubuntu"></i>
+        </div>
+        <div>
+          <h3>Ubuntu</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Debian-based systems</p>
+        </div>
+      </div>
+      
+      <div class="system-item">
+        <div class="system-icon">
+          <i class="fab fa-apple"></i>
+        </div>
+        <div>
+          <h3>macOS</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Intel & M1 chips</p>
+        </div>
+      </div>
+      
+      <div class="system-item">
+        <div class="system-icon">
+          <i class="fas fa-dove"></i>
+        </div>
+        <div>
+          <h3>Parrot OS</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Security-focused distro</p>
+        </div>
+      </div>
+      
+      <div class="system-item">
+        <div class="system-icon">
+          <i class="fab fa-windows"></i>
+        </div>
+        <div>
+          <h3>Windows WSL</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Windows Subsystem for Linux</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section dark">
+    <h2><i class="fas fa-history"></i> Version History</h2>
+    <p>Evolution of KriBekHUB through its releases</p>
+    
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-date">v2.0 (Current)</div>
+        <p>Added GPS capture functionality with Google Maps integration, improved UI, and enhanced target tracking.</p>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-date">v1.9</div>
+        <p>Improved CPU architecture detection, added full Termux support, and optimized performance.</p>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-date">v1.8</div>
+        <p>Implemented Cloudflare Tunnel support alongside Ngrok for more reliable connections.</p>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-date">v1.3–v1.7</div>
+        <p>Added multiple new phishing templates, fixed link generation issues, and improved user flow.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="disclaimer" class="section">
+    <h2><i class="fas fa-gavel"></i> Legal Disclaimer</h2>
+    <div style="background: rgba(255, 0, 0, 0.1); padding: 2rem; border-radius: 8px; border-left: 4px solid #ff0000;">
+      <p style="font-size: 1.1rem; line-height: 1.8;">
+        <strong style="color: #ff0000;">WARNING:</strong> KriBekHUB is developed for <strong>educational purposes</strong> and <strong>authorized penetration testing</strong> only. Unauthorized use of this tool against systems you don't own or have explicit permission to test is <strong>illegal</strong>.
+      </p>
+      <p style="margin-top: 1rem; font-size: 1.1rem; line-height: 1.8;">
+        The developer assumes no liability and is not responsible for any misuse or damage caused by this tool. By using KriBekHUB, you agree that you are using it <strong>legally and ethically</strong>.
+      </p>
+    </div>
+  </section>
+
+  <section class="section dark">
+    <h2><i class="fas fa-heart"></i> Credits</h2>
+    <p>KriBekHUB stands on the shoulders of giants</p>
+    
+    <div style="margin-top: 2rem; background: var(--card-bg); padding: 2rem; border-radius: 8px; max-width: 800px; margin-left: auto; margin-right: auto;">
+      <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.5rem;">
+        <div style="font-size: 3rem; color: var(--primary);">
+          <i class="fas fa-code-branch"></i>
+        </div>
+        <div>
+          <h3>Inspiration</h3>
+          <p style="color: var(--text-muted);">By TechChip</p>
+        </div>
+      </div>
+      
+      <div style="display: flex; align-items: center; gap: 1.5rem;">
+        <div style="font-size: 3rem; color: var(--primary);">
+          <i class="fas fa-user-astronaut"></i>
+        </div>
+        <div>
+          <h3>Maintainer & Author </h3>
+          <p style="color: var(--text-muted);">Bibek Bista (BibekBista0406)</p>
+        </div>
+      </div>
+    </div>
+    
+    <div style="margin-top: 3rem; text-align: center;">
+      <a href="https://github.com/Bibekbista0406/KriBekHUB" class="btn"><i class="fab fa-github"></i> Star on GitHub</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="social-links">
+      <a href="https://github.com/Bibekbista0406"><i class="fab fa-github"></i></a>
+      <a href="https://x.com/bibekbista04 "><i class="fab fa-twitter"></i></a>
+      <a href="https://www.facebook.com/bibek.bista.7528"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-youtube"></i></a>
+    </div>
+    <p>© 2025 KriBekHUB | Built for ethical hackers & security researchers</p>
+    <p style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--text-muted);">Use responsibly and legally</p>
+  </footer>
+
+  <script>
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+    
+    // Header scroll effect
+    window.addEventListener('scroll', function() {
+      const header = document.querySelector('header');
+      if (window.scrollY > 50) {
+        header.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.7)';
+        header.style.background = 'rgba(10, 10, 10, 0.95)';
+      } else {
+        header.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.5)';
+        header.style.background = 'var(--bg-darker)';
+      }
+    });
+    
+    // Animate elements when they come into view
+    const observerOptions = {
+      threshold: 0.1
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate');
+        }
+      });
+    }, observerOptions);
+    
+    document.querySelectorAll('.feature-card, .system-item, .timeline-item').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
