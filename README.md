@@ -1,196 +1,119 @@
 <div align="center">
-  <img src="assets/logo.png" alt="KriBekHUB Logo" width="200" style="border-radius:10px;box-shadow:0 4px 30px rgba(0,255,204,0.3)"/>
+  <img src="assets/logo.png" alt="KriBekHUB Logo" width="180" style="border-radius:10px;filter:drop-shadow(0 0 10px #00ffcc)"/>
   
   # 🔥 KriBekHUB v2.0
   
-  **Advanced Ethical Hacking Tool for Webcam & GPS Capture via Social Engineering**
+  **Advanced Social Engineering Tool for Ethical Penetration Testing**
   
-  ![GitHub release](https://img.shields.io/github/v/release/Bibekbista0406/KriBekHUB?color=00ffcc&label=version&style=flat-square)
-  ![GitHub license](https://img.shields.io/github/license/Bibekbista0406/KriBekHUB?color=00ffcc&style=flat-square)
-  ![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20Termux%20%7C%20macOS%20%7C%20WSL-00ffcc?style=flat-square)
+  <div>
+    <img src="https://img.shields.io/github/stars/Bibekbista0406/KriBekHUB?style=for-the-badge&color=00ffcc&label=Stars" alt="Stars"/>
+    <img src="https://img.shields.io/github/forks/Bibekbista0406/KriBekHUB?style=for-the-badge&color=00ffcc&label=Forks" alt="Forks"/>
+    <img src="https://img.shields.io/badge/Tested%20On-Kali%20|%20Termux%20|%20WSL-00ffcc?style=for-the-badge" alt="Tested On"/>
+  </div>
+</div>
+
+---
+
+## 🌟 Feature Highlights
+
+<div align="center" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:1rem;margin:2rem 0">
+
+<div style="background:rgba(0,255,204,0.1);padding:1.5rem;border-radius:10px;border-left:3px solid #00ffcc">
+<h3>📸 Media Capture</h3>
+<ul style="text-align:left">
+<li>Front/Rear camera access</li>
+<li>Auto-saved snapshots</li>
+<li>Multiple capture modes</li>
+</ul>
+</div>
+
+<div style="background:rgba(0,255,204,0.1);padding:1.5rem;border-radius:10px;border-left:3px solid #00ffcc">
+<h3>📍 Location Tracking</h3>
+<ul style="text-align:left">
+<li>GPS coordinates</li>
+<li>Google Maps integration</li>
+<li>Accuracy reporting</li>
+</ul>
+</div>
+
+<div style="background:rgba(0,255,204,0.1);padding:1.5rem;border-radius:10px;border-left:3px solid #00ffcc">
+<h3>🎭 Social Engineering</h3>
+<ul style="text-align:left">
+<li>5+ phishing templates</li>
+<li>Custom page builder</li>
+<li>Auto-generated links</li>
+</ul>
+</div>
 
 </div>
 
 ---
 
-## 📌 Table of Contents
-- [✨ Features](#-features)
-- [🛠 Installation](#-installation)
-- [🚀 Usage](#-usage)
-- [🖥 Supported Systems](#-supported-systems)
-- [📜 Version History](#-version-history)
-- [⚠️ Legal Disclaimer](#️-legal-disclaimer)
-- [🤝 Contributing](#-contributing)
-- [📄 License](#-license)
-- [🙏 Credits](#-credits)
+## 🚀 Quick Start Guide
 
----
-
-## ✨ Features
-
-<div align="center">
-
-| Feature Category | Description |
-|-----------------|-------------|
-| **📷 Media Capture** | Webcam snapshot collection with social engineering |
-| **📍 Location Tracking** | GPS coordinates via Google Maps integration |
-| **🎭 Phishing Templates** | Multiple customizable templates for different scenarios |
-| **⚡ Smart Detection** | Automatic architecture detection for payload optimization |
-| **🧹 Cleanup** | One-command system cleanup (`clean.sh`) |
-| **☁️ Tunnel Support** | Built-in Ngrok & Cloudflare tunneling |
-
-</div>
-
----
-
-## 🛠 Installation
-
-### Basic Installation
+# 1. Clone repository
 ```bash
-# Clone the repository
-git clone https://github.com/Bibekbista0406/KriBekHUB.git
+
+git clone https://github.com/Bibekbista0406/KriBekHUB && cd KriBekHUB
 ```
-# Navigate to directory
-```bash
-cd KriBekHUB
-```
-# Make scripts executable
+# 2. Make scripts executable
 ```bash
 chmod +x kri.sh clean.sh
 ```
-# Run main script
+# 3. Run main tool
 ```bash
 bash kri.sh
 ```
-Dependencies
+First-Time Setup:
 
-Ensure you have these installed:
+# Install dependencies (Debian/Ubuntu/Kali)
 ```bash
-curl
-
-php
-
-ssh
-
-git
-
-wget
+sudo apt update && sudo apt install -y php wget curl unzip ssh
 ```
-🚀 Usage
-Launch the tool:
-```bash
-bash
-bash kri.sh
-```
-Select an option:
-
+🖥️ System Compatibility
+<div align="center">
+Platform	Status	Notes
+Kali Linux	✅ Fully Supported	Recommended platform
+Termux	✅ Works	Requires php package
+Ubuntu/Debian	✅ Works	May need dependencies
+macOS	✅ Works	ARM/Intel supported
+Windows WSL	⚠️ Limited	Use Kali WSL for best results
+</div>
+🛠️ Tool Interface Preview
 text
-[1] Webcam Capture
-[2] GPS Location
-[3] Custom Template
-[4] Cleanup
-Follow on-screen instructions
+[+] SELECT AN ATTACK VECTOR:
 
-🖥 Supported Systems
-<div align="center" style="margin:20px 0">
-System	Tested	Notes
-Kali Linux	✅	Primary development platform
-Termux (Android)	✅	Requires additional setup
-Ubuntu/Debian	✅	May need dependency installs
-macOS (Intel/M1)	✅	Homebrew recommended
-Parrot OS	✅	Works out-of-the-box
-Windows WSL	⚠️	Requires Linux subsystem
-</div>
-📜 Version History
-Version	Changes
-v2.0	Added GPS capture, Google Maps integration
-v1.9	Improved CPU detection, Termux support
-v1.8	Cloudflare Tunnel support added
-v1.7	New phishing templates
-v1.6	Bug fixes and stability improvements
-⚠️ Legal Disclaimer
-<div align="center" style="background-color: rgba(255,0,0,0.1); padding: 15px; border-radius: 10px; border-left: 4px solid #ff0000; margin: 20px 0">
-WARNING: This tool is provided for educational purposes only.
-Unauthorized use against systems you don't own is illegal.
+[1] Webcam Snapshot Capture
+[2] GPS Location Tracker  
+[3] Meeting Invite Phish
+[4] YouTube Viewer Phish
+[5] Festival Greeting Phish
+[6] Clean Logs & Exit
 
-By using KriBekHUB, you agree that:
+[?] Choose option (1-6): 
+⚠️ Critical Legal Notice
+<div style="background:#ff000010;padding:1.5rem;border-radius:8px;border-left:4px solid red;margin:2rem 0">
+❗ This tool is for authorized penetration testing and educational purposes ONLY
 
-You will use this tool only for legal, authorized testing
+By using KriBekHUB, you AGREE that:
 
-You own the target system or have explicit permission
+You have EXPLICIT PERMISSION to test the target system
 
-The developer (Bibek Bista) is not responsible for any misuse
+You will NOT use this tool for illegal activities
+
+The developer is NOT RESPONSIBLE for misuse
 
 </div>
-🤝 Contributing
-Fork the repository
+📦 Version Changelog
+Version	Highlights
+v2.0	GPS tracking, Google Maps integration
+v1.9	Apple Silicon support, improved Termux compatibility
+v1.8	Cloudflare Tunnel support, new phishing templates
+🙌 Credits & Acknowledgments
+Original Concept: TechChip (CamPhish)
 
-Create your feature branch:
+Inspiration: BY Techipnet
 
-```bash
-git checkout -b feature/your-feature
-```
-Commit your changes:
+Main Developer: Bibek Bista
 
-```bash
-git commit -m 'Add some feature'
-```
-Push to the branch:
-
-bash
-git push origin feature/your-feature
-Open a Pull Request
-
-📄 License
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-🙏 Credits
-Developed & Maintained by: Bibek Bista
-
-Original Concept: Inspired by CamPhish (TechChip)
-
-Special Thanks: thelinuxchoice for research techniques
-
-<div align="center" style="margin-top:30px"> <a href="https://github.com/Bibekbista0406/KriBekHUB"> <img src="https://img.shields.io/badge/⭐_Star_this_Repository-00ffcc?style=for-the-badge&logo=github" alt="Star on GitHub"/> </a> </div> ```
-Key Features:
-Complete Documentation:
-
-All major sections covered (Installation, Usage, Features, etc.)
-
-Version history table
-
-System compatibility matrix
-
-Enhanced Visuals:
-
-Custom shields/badges
-
-Centered layout with dividers
-
-Warning box for disclaimer
-
-Star repository CTA
-
-Legal Compliance:
-
-Clear disclaimer section
-
-MIT license reference
-
-Usage terms highlighted
-
-Attribution:
-
-Clear credit to Bibek Bista
-
-Acknowledgments section
-
-GitHub profile link
-
-Mobile-Friendly:
-
-Responsive tables
-
-Proper spacing
-
-Emoji icons for visual scanning
+<div align="center" style="margin-top:2rem"> <a href="https://github.com/Bibekbista0406/KriBekHUB"> <img src="https://img.shields.io/badge/⭐_Star_On_GitHub-00ffcc?style=for-the-badge&logo=github" alt="Star Repository"/> </a> </div> ```
