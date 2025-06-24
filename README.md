@@ -67,12 +67,15 @@ chmod +x {kri.sh,clean.sh}
 sudo apt update && sudo apt install -y php curl wget unzip ssh
 ```
 🖥️ Basic Usage
-bash
-# Start the tool
-bash kri.sh
 
+# Start the tool
+```bash
+bash kri.sh
+```
 # Clean up traces
+```bash
 bash clean.sh
+```
 🖥️ Supported Platforms
 <div style="overflow-x:auto;margin:2rem 0">
 Platform	Status	Requirements
