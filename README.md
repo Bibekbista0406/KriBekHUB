@@ -2,16 +2,29 @@
 **Advanced Social Engineering Toolkit for Ethical Security Research**  
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Bibekbista0406/KriBekHUB/main/assets/logo.png" width="220" style="border-radius:12px;filter:drop-shadow(0 0 15px #00ffcc)">
+  <a href="https://bibekbista0406.github.io/KriBekHUB/" target="_blank">
+    <img src="https://raw.githubusercontent.com/Bibekbista0406/KriBekHUB/main/assets/logo.png" width="220" style="border-radius:12px;filter:drop-shadow(0 0 15px #00ffcc)">
+  </a>
+  <br>
+  <a href="https://bibekbista0406.github.io/KriBekHUB/" target="_blank">
+    <img src="https://img.shields.io/badge/OFFICIAL_WEBSITE-00ffcc?style=for-the-badge&logo=vercel&logoColor=white">
+  </a>
   <br>
   <img src="https://img.shields.io/github/stars/Bibekbista0406/KriBekHUB?style=for-the-badge&color=00ffcc&label=STARS&logo=github">
   <img src="https://img.shields.io/github/license/Bibekbista0406/KriBekHUB?style=for-the-badge&color=00ffcc&label=LICENSE">
   <img src="https://img.shields.io/badge/Version-2.0-00ffcc?style=for-the-badge&logo=git">
 </p>
-[⭐ Stars] [🔄 Forks] [🧪 Tested On] [🛠 Built with Bash] [📦 Version 1.0]
----
- 📸 Grab cam shots from a target's front phone camera or PC webcam — just by sending a link.
 
+---
+
+## 🌐 Official Website
+For complete documentation, live demos, and tutorials, visit our official website:  
+
+🔗 **[https://bibekbista0406.github.io/KriBekHUB/](https://bibekbista0406.github.io/KriBekHUB/)**  
+
+[![Website Preview](https://img.shields.io/badge/WEBSITE_PREVIEW-00ffcc?style=for-the-badge)](https://bibekbista0406.github.io/KriBekHUB/)
+
+---
 ## ✨ Key Features
 
 - 🎉 **Custom Templates** to engage the target:
