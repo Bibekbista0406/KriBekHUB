@@ -16,7 +16,7 @@
 </p>
 
 ---
-
+<h1> KriBEKHUB Version 3.0 Comming soon</h1>
 ## 🌐 Official Website
 For complete documentation, live demos, and tutorials, visit our official website:  
 
@@ -93,7 +93,7 @@ Windows WSL	⚠️ Experimental	Use Kali WSL
   ███    ███ ███    ███    ███   ███    ███   ███ ▀███▄
 ▄█████████▀  █▀   ▄█████████▀    ██████████   ███   ▀█▀  _  ______  ___ ____  _____ _  ___   _ _   _ ____
                                                         | |/ /  _ \|_ _| __ )| ____| |/ / | | | | | | __ )
-      Version 1.0                                       | ' /| |_) || ||  _ \|  _| | ' /| |_| | | | |  _ \
+      Version 2.0                                       | ' /| |_) || ||  _ \|  _| | ' /| |_| | | | |  _ \
       Powered by KriBekHUB                              | . \|  _ < | || |_) | |___| . \|  _  | |_| | |_) | Kristina
       Purpose: Penetration Testing ||                   |_|\_\_| \_\___|____/|_____|_|\_\_| |_|\___/|____/
 ```
